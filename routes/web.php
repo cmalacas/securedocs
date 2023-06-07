@@ -38,6 +38,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/upload-file', [FileUpload::class, 'createForm']);
     Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload');
+
+    Route::post('/get-my-files', [FileUpload::class, 'get']);
 });
 
 require __DIR__.'/auth.php';

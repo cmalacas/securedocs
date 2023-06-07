@@ -9,8 +9,14 @@ use App\Models\User;
 
 class FileUpload extends Controller
 {
-  public function createForm(){
-    return view('file-upload');
+  public function get() {
+    
+    $user = User::find(auth()->id());
+
+    $files = $user->files;
+
+    return response()->json(['files' => $files], 200, [], JSON_NUMERIC_CHECK);
+
   }
 
   public function fileUpload(Request $req){
