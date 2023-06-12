@@ -1,1 +1,0 @@
-import{r as t,a as e}from"./app-dd45a4e6.js";t.createContext();function c({auth:r,header:s,children:a}){return t.useState(!1),e("div",{className:"min-h-screen",children:e("main",{children:a})})}export{c as A};

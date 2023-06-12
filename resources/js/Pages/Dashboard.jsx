@@ -1,5 +1,4 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
 
 import React, {Component, Fragment, useCallback} from 'react';
 import Dropzone from 'react-dropzone';
@@ -15,6 +14,8 @@ import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css'
 
 import Swal from 'sweetalert2';
+
+import { Link } from '@inertiajs/react';
 
 class MyFiles extends Component {
 
@@ -124,9 +125,12 @@ class MyFiles extends Component {
         return (
 
             <div>
+
+                
+
                <Dropzone onDrop={this.onDrop}>
                     {({getRootProps, getInputProps}) => (
-                        <section>
+                        <section className="mt-5">
                             <div {...getRootProps()}>
                                 <input {...getInputProps()} />
                                 <p className="border p-2 text-center">Click here to upload file</p>
@@ -171,7 +175,16 @@ export default class Dashboard extends Component {
                         <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                             <div className="p-6 text-gray-900">
 
-                                <div className="container mt-5">       
+                                <div className="container">      
+
+                                    <div className="flex justify-end">
+                                        <Link
+                                            href="/logout"
+                                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-right"
+                                        >
+                                                    Logout
+                                        </Link>
+                                    </div> 
                                     
                                     <MyFiles />
                                     
