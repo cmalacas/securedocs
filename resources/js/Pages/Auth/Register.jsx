@@ -34,7 +34,7 @@ export default function Register() {
 
     return (
         <Fragment>
-            <Header />
+       
         <GuestLayout>
             <Head title="Register" />
 
@@ -122,7 +122,7 @@ export default function Register() {
             </form>
             
             </GuestLayout>
-            <Footer />
+           
         </Fragment>
     );
 }
