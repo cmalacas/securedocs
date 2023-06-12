@@ -44,4 +44,25 @@ class FileUpload extends Controller
             return response()->json(['success' => 1, 'files' => $user->files ], 200, [], JSON_NUMERIC_CHECK);
         }
    }
+
+   public function delete(Request $req) {
+
+    $id = $req->get('id');
+
+    $file = File::find($id);
+
+    $file_path = str_replace('/storage/', '/app/public/', $file->file_path);
+
+    if (file_exists(storage_path($file_path))) {
+
+      unlink(storage_path($file_path));
+
+    }
+
+    $file->delete();
+
+    return response()->json(['success' => 1]);
+
+
+   }
 }

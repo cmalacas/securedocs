@@ -23,7 +23,13 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^6.4.0",
+        "@fortawesome/free-regular-svg-icons": "^6.4.0",
+        "@fortawesome/free-solid-svg-icons": "^6.4.0",
+        "@fortawesome/react-fontawesome": "^0.2.0",
         "react-dropzone": "^14.2.3",
-        "sweetalert2": "^11.7.11"
+        "react-tooltip": "^5.13.1",
+        "reactstrap": "^9.2.0",
+        "sweetalert2": "^11.7.12"
     }
 }

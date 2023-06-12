@@ -40,6 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload');
 
     Route::post('/get-my-files', [FileUpload::class, 'get']);
+
+    Route::post('/delete-file', [FileUpload::class, 'delete']);
 });
 
 require __DIR__.'/auth.php';

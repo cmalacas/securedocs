@@ -5,6 +5,16 @@ import React, {Component, Fragment, useCallback} from 'react';
 import Dropzone from 'react-dropzone';
 
 import Authservice from '@/Components/Authservice';
+import { Button } from 'reactstrap';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash, faFile } from '@fortawesome/free-solid-svg-icons';
+
+import { Tooltip } from 'react-tooltip';
+
+import 'react-tooltip/dist/react-tooltip.css'
+
+import Swal from 'sweetalert2';
 
 class MyFiles extends Component {
 
@@ -19,7 +29,31 @@ class MyFiles extends Component {
         }
 
         this.onDrop = this.onDrop.bind(this);
-        this.save = this.save.bind(this)
+        this.save = this.save.bind(this);
+        this.delete = this.delete.bind(this);
+
+    }
+
+    delete(f) {
+
+        Swal.fire({
+            icon: 'warning',
+            title: 'Are you sure?',
+            html: 'File will delete in the server and it is not undoable'
+        }).then(( result) => {
+
+            if (result.isConfirmed) {
+
+                const files = this.state.files.filter( ff => ff.id != f.id );
+                this.setState({ files });
+
+                Authservice.post('/delete-file', { id: f.id });
+
+            }
+
+        });
+
+        
 
     }
 
@@ -74,7 +108,16 @@ class MyFiles extends Component {
 
         const files = this.state.files.map( f => {
 
-            return <li>{f.name}</li>
+            return <li key={f.id} className="pt-1 pb-1 border-b border-gray-100 flex justify-between">
+                        <a target="_blank" href={`${f.file_path}`}>{f.name}</a>
+
+                        <div className="flex">
+                            <Button href={`${f.file_path}`} target="_blank" className="pt-1 pb-1 pl-3 pr-3 mr-1 rounded border text-white bg-blue-600 hover:bg-blue-400" data-tip="Open File">
+                                <FontAwesomeIcon icon={faFile} />
+                            </Button>
+                            <Button onClick={ () => this.delete(f) } className="pt-1 pb-1 pl-3 pr-3 border rounded text-white bg-red-600 hover:bg-red-400" data-tip="Delete file"><FontAwesomeIcon icon={faTrash} /> </Button>
+                        </div>
+                   </li>
 
         });
 
@@ -93,7 +136,7 @@ class MyFiles extends Component {
                 </Dropzone>
 
                 <div>
-                    My Files here:      
+                    <h4 className="pt-2 pb-2 text-2xl">My Files here:</h4>
                     <ul>
                         { files }
                     </ul>
@@ -138,6 +181,7 @@ export default class Dashboard extends Component {
                         </div>
                     </div>
                 </div>
+                <Tooltip />
             </AuthenticatedLayout>
         );
 
