@@ -15,7 +15,7 @@
         @viteReactRefresh
         @vite(['resources/js/app.jsx', "resources/js/Pages/{$page['component']}.jsx"])
         <link rel="stylesheet" href="/build/assets/app-936626fb.css">
-        <!-- @vite('resources/css/app.css') -->
+        
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
