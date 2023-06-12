@@ -1,5 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, Fragment } from 'react';
 import GuestLayout from '@/Layouts/GuestLayout';
+import Header from '@/Layouts/Header';
+import Footer from '@/Layouts/Footer';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
@@ -31,6 +33,8 @@ export default function Register() {
     };
 
     return (
+        <Fragment>
+            <Header />
         <GuestLayout>
             <Head title="Register" />
 
@@ -116,6 +120,9 @@ export default function Register() {
                     </PrimaryButton>
                 </div>
             </form>
-        </GuestLayout>
+            
+            </GuestLayout>
+            <Footer />
+        </Fragment>
     );
 }

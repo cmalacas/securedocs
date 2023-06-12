@@ -6,40 +6,6 @@ import Dropzone from 'react-dropzone';
 
 import Authservice from '@/Components/Authservice';
 
-function MyDropzone() {
-    
-    const save = (data) => {
-
-        Authservice.post('/upload-file', data);
-        
-    }
-    
-    const onDrop = useCallback(acceptedFiles => {
-
-        const data = new FormData();
-    
-        acceptedFiles.forEach((file, index) => {
-            data.append(`file`, file, file.name);
-        });
-    
-        save(data);
-        
-    }, []);
-
-    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
-  
-    return (
-      <div {...getRootProps()}>
-        <input {...getInputProps()} />
-        {
-          isDragActive ?
-            <p>Drop the files here ...</p> :
-            <p>Drag 'n' drop some files here, or click to select files</p>
-        }
-      </div>
-    )
-  }
-
 class MyFiles extends Component {
 
     constructor(props) {
@@ -155,7 +121,7 @@ export default class Dashboard extends Component {
                 errors={this.props.errors}
                 header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
             >
-                <Head title="Dashboard" />
+               
 
                 <div className="py-12">
                     <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -165,6 +131,7 @@ export default class Dashboard extends Component {
                                 <div className="container mt-5">       
                                     
                                     <MyFiles />
+                                    
                                 </div>
 
                             </div>

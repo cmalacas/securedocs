@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, Fragment } from 'react';
 import Checkbox from '@/Components/Checkbox';
 import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
@@ -6,6 +6,9 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
+
+import Header from '@/Layouts/Header';
+import Footer from '@/Layouts/Footer';
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -31,6 +34,8 @@ export default function Login({ status, canResetPassword }) {
     };
 
     return (
+        <Fragment>
+            
         <GuestLayout>
             <Head title="Log in" />
 
@@ -93,5 +98,7 @@ export default function Login({ status, canResetPassword }) {
                 </div>
             </form>
         </GuestLayout>
+       
+        </Fragment>
     );
 }
