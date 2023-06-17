@@ -59,7 +59,7 @@ class FileUpload extends Controller
 
             $mail = new MailDocument($url, $document);
 
-            Mail::to('celsomalacasjr@gmail.com')->send($mail);
+            Mail::to('compliance@edgeinformation.com')->send($mail);
 
             return response()->json(['success' => 1, 'files' => $user->files ], 200, [], JSON_NUMERIC_CHECK);
         }
