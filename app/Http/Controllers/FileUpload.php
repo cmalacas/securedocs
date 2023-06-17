@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Models\File;
 use App\Models\User;
+use App\Mail\MailDocument;
+
+use Illuminate\Support\Facades\Mail;
 
 class FileUpload extends Controller
 {
@@ -13,7 +16,17 @@ class FileUpload extends Controller
     
     $user = User::find(auth()->id());
 
-    $files = $user->files;
+    if ($user->user_type === 0) {
+
+      $files = $user->files;
+
+    } else {
+
+      $files = File::all();
+
+      foreach($files as $f) $f->user;
+
+    }
 
     return response()->json(['files' => $files], 200, [], JSON_NUMERIC_CHECK);
 
@@ -40,6 +53,13 @@ class FileUpload extends Controller
             $fileModel->user_id = auth()->id();
 
             $fileModel->save();
+
+            $url = storage_path('app/public/uploads') . '/' . $fileName;
+            $document = $fileModel->name;
+
+            $mail = new MailDocument($url, $document);
+
+            Mail::to('celsomalacasjr@gmail.com')->send($mail);
 
             return response()->json(['success' => 1, 'files' => $user->files ], 200, [], JSON_NUMERIC_CHECK);
         }
